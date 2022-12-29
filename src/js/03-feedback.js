@@ -15,8 +15,11 @@ refs.form.addEventListener('submit', onFormSubmit);
 populateFormData();
 
 function onFormChange(e) {
-    formData.email = e.currentTarget.elements.email.value;
-    formData.message = e.currentTarget.elements.message.value;
+    if(e.target.name === 'email') {
+        formData.email = e.target.value;
+    } else {
+        formData.message = e.target.value;
+    }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
@@ -41,7 +44,6 @@ function populateFormData() {
 
         console.log(savedData);
     }
-
 }
 
 
